@@ -1,0 +1,40 @@
+/* Fix toolbar margin and padding */
+nav.navbar.navbar-default.navbar-fixed-bottom{padding-right: 10px}
+
+/* No more rounded corners */
+input, nav, button, a, div, ul, li{
+    border-radius: 0px !important;
+}
+
+input{
+    background-color: #222 !important;
+    outline: 1px solid #222;
+    color: #fff !important;
+}
+input[type="text"]:hover, button:active, button:focus, a:focus{outline: 1px solid grey !important}
+input[type="text"]:focus{
+    outline: 1px solid white !important;
+    color: #fff !important;
+}
+/*  Navbar and certain chlid elements */
+.navbar, .navbar * a, ul, li, ol{ background-color: #222 !important}
+
+/* dropdown links */
+.dropdown-menu>li>a{color:#fff}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{color: #00bc8c}
+
+/* nav buttons */
+.navbar-btn{
+    width:50px;
+    height: 43px;
+}
+
+/* zoom buttons */
+ul.mapControls>li>a {
+    width: 50px;
+    height: 50px;
+    background-color: #464545 !important;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 1.9em;
+}

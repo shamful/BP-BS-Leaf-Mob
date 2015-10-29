@@ -1,0 +1,58 @@
+.leaflet-routing-container.leaflet-bar.leaflet-control {
+    position: fixed;
+    width: 500px;
+    top: 30px;
+    right: -10px;
+    background-color: #222222;
+    color: white;
+    margin: 10px;
+    box-shadow: none;
+    display: none;
+}
+
+.leaflet-routing-geocoder input {
+    color: white;
+    padding: 1em 0.8em;
+    padding-right: 4em;
+    border: none;
+    font-size: 12px;
+}
+
+.leaflet-routing-remove-waypoint::after {
+    background: none !important;
+    width: 45px;
+    height: 45px;
+    font-size: 32px;
+    top: -8px;
+    margin-top: -10px;
+}
+
+.leaflet-routing-geocoder-result table{
+    width: 495px !important;
+    text-align: center;
+    background-color: #222;
+    color: #f2f2f2;
+}
+
+.leaflet-routing-geocoder-result table:focus,
+.leaflet-routing-geocoder-selected, .leaflet-routing-geocoder-result tr:hover{
+    background-color: #4a4a4a !important;
+}
+
+.leaflet-routing-geocoders button{background-color: #222 !important}
+
+button.leaflet-routing-add-waypoint {
+    height: 45px;
+    width: 150px;
+    font-size: 12pt;
+    font-family: inherit;
+    margin-bottom: 5px;
+}
+
+.leaflet-routing-add-waypoint:after{
+    content: 'Add Waypoint';
+}
+
+.leaflet-routing-alt, .leaflet-routing-geocoders{
+    border-bottom: 0px !important;
+}

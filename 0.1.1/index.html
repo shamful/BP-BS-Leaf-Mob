@@ -1,0 +1,207 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        
+        <!--JQUERY -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+        <!-- Leaflet.js -->
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+        <!--  Proj4 Proj4JS -->
+        <script src="js/vendor/proj4.js"></script>
+        <script src="js/vendor/proj4leaflet.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.4/darkly/bootstrap.min.css" />
+
+        <!-- Font awesome -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+
+        <!-- Ionicons -->
+        <link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css"/>
+
+        <!-- Markerclusters -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>
+
+        <!--  Locate User  -->
+        <script type="text/javascript" src="js/vendor/L.Control.Locate.min.js"></script>
+
+        <!--  Routing Machine  -->
+        <link href="css/vendor/leaflet-routing-machine.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/vendor/leaflet-routing-machine.js"></script>
+
+        <!--  Routing Machine  -->
+        <link href="css/vendor/Control.Geocoder.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/vendor/Control.Geocoder.js"></script>
+        <link href="css/leaflet-routing-machine_custom.css" rel="stylesheet" />
+
+        <!--  Fullscreen toggle  -->
+        <script type="text/javascript" src="js/vendor/fullscreenToggle.js"></script>
+
+        <!--  My Map  -->
+        <script type="text/javascript" src="js/myMap.js"></script>
+        <script type="text/javascript" src="js/geoserverPolygons.js"></script>
+
+        <!-- Bootstrap custom  -->
+        <link href='css/bootstrapCustom.css' rel='stylesheet' />
+
+        <!-- CSS Loaders  -->
+        <link href='css/tilesLoader.css' rel='stylesheet' />
+
+        <!-- My Map -->
+        <style>
+            nav * {transition: all 0.2s ease}
+            html, body{
+                width: 100%;
+                height: 100%;
+                font-family: arial;
+                background-color: orange;
+            }
+            #map { 
+                height: calc(100% - 101px);
+                height: -moz-calc(100% - 101px);
+                height: -webkit-calc(100% - 101px);
+            }
+            div#betaMessage{
+                padding: 0.8em 2em;
+                color: #fff;
+                font-size: 1.313rem;
+                line-height: 1.5;
+                background-color: #222;
+            }
+            #ribbon{
+                background: url('https://beta.islington.gov.uk/_common/img/banner.png') repeat-x center 0;
+                background-size:cover;
+                height: 15px;
+                width:100%;
+                position: absolute;
+                z-index: 100;
+                text-align: center;
+            }
+            /* search button */
+            button#searchGo{
+                position: relative;
+                left: -1px;
+                height: 44px;
+            }
+            /* on class - buttons / links */
+            .on a{
+                color: orange !important;
+                font-weight: bold !important;
+            }
+            /* Hide get location button */
+            .leaflet-control-locate{display:none}
+        </style>
+
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- CSS Loader: tilesLoader.css -->
+        <div id="loaders">
+            <div class="sk-cube-grid">
+              <div class="sk-cube sk-cube1"></div>
+              <div class="sk-cube sk-cube2"></div>
+              <div class="sk-cube sk-cube3"></div>
+              <div class="sk-cube sk-cube4"></div>
+              <div class="sk-cube sk-cube5"></div>
+              <div class="sk-cube sk-cube6"></div>
+              <div class="sk-cube sk-cube7"></div>
+              <div class="sk-cube sk-cube8"></div>
+              <div class="sk-cube sk-cube9"></div>
+            </div>
+            <div id="loadingTitle">Loading</div>
+        </div>
+
+        <!--  Beta banner  -->
+        <div id="betaMessage"><strong>This is our alpha map.</strong> We'll add new features over the coming months. We'd like to have <a href="mailto:shamir.khan@islington.gov.uk">your feedback.</a></div>
+        <!-- LBI Ribbon -->
+        <!--<div id="ribbon"></div>-->
+        <!-- MY MAP -->
+        <div id="map"></div>  
+
+        <!-- TOOLBAR -->
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="glyphicon glyphicon-chevron-up"></span>
+              </button>
+              <button type="button" class="btn btn-default navbar-btn visible-xs-inline-block"><span class="glyphicon glyphicon-minus"></span></button>
+              <button type="button" class="btn btn-default navbar-btn visible-xs-inline-block" onclick="$('#map').hide();"><span class="glyphicon glyphicon-plus"></span></button>
+                <a class="navbar-brand" href="#"><span style="color:#ebfd0b">GeoSvr</span>Reader</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="#" onclick="alert('I need help too (’へ’) ')">Help</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Switch Basemap <span class="caret"></span></a>
+                  <ul class="dropdown-menu" id="baselayersMenu">
+                      <!--      jquery add baselayers      -->
+                  </ul>
+                </li>
+                <li><a href="#">Filter</a></li>
+              </ul>
+
+              <ul class="navbar-form navbar-left" role="search">
+                <li class="form-group">
+                  <input type="text" class="form-control" placeholder="Address Search">
+                </li>
+                  <button type="button" id="searchGo" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+              </ul>
+
+              <ul class="nav navbar-nav">
+                <li id="getLocation"><a href="#">Track My Location</a></li>
+                <li id="routingMachineToggle"><a href="#">Directions</a></li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right">
+                <div class="btn-group mapControls" role="group" aria-label="...">
+                  <button type="button" class="btn btn-default navbar-btn" id="home"><span class="glyphicon glyphicon-home"></span></button>
+                </div>
+                <div class="btn-group mapControls hidden-xs" role="group" aria-label="...">
+                  <button type="button" class="btn btn-default navbar-btn" onclick="map.zoomOut()"><span class="glyphicon glyphicon-minus"></span></button>
+                  <button type="button" class="btn btn-default navbar-btn" onclick="map.zoomIn()"><span class="glyphicon glyphicon-plus"></span></button>
+                </div>
+                <div class="btn-group mapControls" role="group" aria-label="...">
+                  <button type="button" class="btn btn-default navbar-btn" id="fullscreenToggle"><span class="glyphicon glyphicon-fullscreen"></span></button>
+                </div>
+                <div class="btn-group mapControls" role="group" aria-label="...">
+                  <button type="button" class="btn btn-default navbar-btn" id="attributionToggle"><span class="glyphicon glyphicon-info-sign"></span></button>
+                </div>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+        <!-- END TOOLBAR -->
+
+
+        
+    
+    </body>
+</html>
