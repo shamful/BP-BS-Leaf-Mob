@@ -22,7 +22,7 @@ input[type="text"]:focus{
     color: #fff !important;
 }
 /*  Navbar and certain chlid elements */
-.navbar, .navbar.a, .navbar.ul, navbar.li, navbar.ol{ background-color: #222 !important}
+.navbar, .navbar.a, .navbar.ul, .navbar.li, .navbar.ol{ background-color: #222 !important}
 
 /* dropdown links */
 .dropdown-menu>li>a{color:#fff}
